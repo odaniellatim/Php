@@ -45,9 +45,9 @@ $frutas = ["Laranja", "Pera", "Maçã", "Uva"];
 $attackMin = $items[0]["base_status"]["min_demage"]["min"];
 $attackMax = $items[0]["base_status"]["min_demage"]["max"];
 
-print_r("Min " . $attackMin);
+// print_r("Min " . $attackMin);
 echo "<br>";
-print_r("Max " . $attackMax);
+// print_r("Max " . $attackMax);
 
 //Pesquisar item no array
 $fruta = in_array("Laranja", $frutas); // Array simples
