@@ -1,0 +1,2 @@
+<h2> Pagina Inicial</h2>
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi accusamus similique temporibus nostrum deserunt eveniet quis, reiciendis et eaque odio pariatur quibusdam ipsa. Repellat accusantium numquam, amet placeat dolores dolorum!</p>

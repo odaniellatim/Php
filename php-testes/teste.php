@@ -100,3 +100,28 @@ echo "<pre>";
 
 // print_r($items);
 echo "</pre>";
+
+for ($item = 0; $item < count($items); $item++) {
+    foreach ($items[$item] as $itemKey => $itemValue) {
+        // Exibe a chave e o valor (se não for array)
+        if (!is_array($itemValue)) {
+            echo "<p>$itemKey: $itemValue</p>";
+        } else {
+            echo "<br>";
+            echo "<strong>$itemKey:</strong><br>";
+            // Se for um array, itera sobre ele
+            foreach ($itemValue as $subKey => $subValue) {
+                if (is_array($subValue)) {
+                    // Se for um array aninhado, itera novamente
+                    echo "&nbsp;&nbsp;$subKey: <br>";
+                    foreach ($subValue as $deepKey => $deepValue) {
+                        echo "&nbsp;&nbsp;&nbsp;&nbsp;$deepKey: $deepValue <br>";
+                    }
+                } else {
+                    echo "&nbsp;&nbsp;$subKey: $subValue <br>";
+                }
+            }
+        }
+    }
+    echo "<hr>";
+}

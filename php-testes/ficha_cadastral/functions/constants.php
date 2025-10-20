@@ -1,0 +1,4 @@
+<?php
+
+define("APOSENTADORIA_MASCULINA", 65);
+define("APOSENTADORIA_FEMININA", 62);
