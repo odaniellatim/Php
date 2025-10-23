@@ -78,7 +78,7 @@ function cadastroUsuarios(): array
         $statusEmprego = $_POST['emprego'];
         $profissao = $_POST['profissao'];
 
-        return [
+        $dadosUser = [
             "nome" => $nome,
             "idade" => $idade,
             "sexo" => $sexo,
@@ -86,6 +86,11 @@ function cadastroUsuarios(): array
             "status-emprego" => $statusEmprego,
             "profissao" => $profissao,
         ];
+
+        //cria a sessão onde estão os dados armazenados no servidor.
+        startSessao("dadosUser", $dadosUser);
+
+        return $dadosUser;
     } else {
 
         return [
@@ -96,7 +101,7 @@ function cadastroUsuarios(): array
 
 function criarCookie($nomeCookie, $dados)
 {
-    return setcookie($nomeCookie, json_encode($dados), time() + 300);
+    return setcookie($nomeCookie, json_encode($dados));
 }
 
 /**
@@ -107,25 +112,66 @@ function criarCookie($nomeCookie, $dados)
  */
 function startSessao(string $nomeSessao, array $dados): array
 {
-    return $_SESSION[$nomeSessao] = $dados;
+    //Cria a Sessão e Cookies com os dados do usuario.
+    $CriaSessao = $_SESSION[$nomeSessao] = $dados;
+    return $CriaSessao;
 }
 
-function veficaMetodoServerEnviado($dadosUsuario)
+function veficaMetodoServerEnviado()
 {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // criarCookie("dadosUser", $dadosUsuario);
-        $CriaSessao = startSessao("dadosUser", $dadosUsuario);
+    if (!isset($_SESSION['dadosUser'])) {
+        $CriaSessao = ["msg" => "Nenhum usuario cadastrado."];
+        return $CriaSessao;
     } elseif (!empty($_SESSION['dadosUser'])) {
-
-        echo "<pre>";
         $CriaSessao = $_SESSION["dadosUser"];
-        // var_dump($dadosUsuario);
-        echo "</pre>";
+        return $CriaSessao;
     } else {
-
         $CriaSessao = "Sessão sem dados para apresentar.";
-        // var_dump($_SESSION);
+        return $CriaSessao;
+    }
+}
+
+function bd($dados)
+{
+    $fileName = "myBD.json";
+    $folder = "banco_dados";
+    $permisao_folder = 644;
+    // $diretorio_bd = getcwd();
+
+    // print_r($diretorio_bd);
+    if (!is_dir($folder)) {
+        mkdir($folder, $permisao_folder);
     }
 
-    return $CriaSessao;
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        //modo leitura se o arquivo já existir
+
+
+        $localBD = $folder . "/" . $fileName;
+        $arquivo = fopen($fileName, "w+");
+
+        if (!$arquivo) {
+            echo "Criando arquvio!";
+            // fopen($fileName, "a");
+            // fwrite($fileName, $dados);
+            // fclose($fileName);
+        } else {
+            echo "Arquivo já criado e existe";
+            // fopen($fileName, "a");
+            // fwrite($fileName, $dados);
+            // fclose($fileName);
+        }
+
+
+
+
+
+        return $fileName . "Cadastro realizado com sucesso";
+    } elseif (file_exists($fileName)) {
+        $bd = file_get_contents($fileName);
+        $json = json_decode($dados);
+        return $json;
+    }
 }

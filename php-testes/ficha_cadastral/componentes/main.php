@@ -5,9 +5,9 @@
     <div class="card">
         <h3>Dados Usuario</h3>
         <hr>
-        <p>Nome: <strong><?= $dadosSessao["nome"]; ?></strong></p>
-        <p>Idade: <strong><?= $dadosSessao["idade"]; ?></strong></p>
-        <p>Sexo: <strong><?= $dadosSessao["sexo"]; ?></strong></p>
+        <p>Nome: <strong><?= $dadosSessao["nome"] ?? ""; ?></strong></p>
+        <p>Idade: <strong><?= $dadosSessao["idade"] ?? ""; ?></strong></p>
+        <p>Sexo: <strong><?= $dadosSessao["sexo"] ?? ""; ?></strong></p>
         <p id="salario">Salário Mensal:
             <strong>
                 <?=
@@ -25,7 +25,7 @@
         <p>Status de Emprego:
             <strong>
                 <?=
-                $dadosSessao["status-emprego"]
+                $dadosSessao["status-emprego"];
                 ?>
             </strong>
         </p>
@@ -39,7 +39,7 @@
         <p>Profissão:
             <strong>
                 <?=
-                $dadosSessao["profissao"]
+                $dadosSessao["profissao"] ?? "";
                 ?>
             </strong>
         </p>

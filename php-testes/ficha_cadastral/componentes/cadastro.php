@@ -1,5 +1,6 @@
 <?php
 
+// validação do formulario
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     // !empty($_POST['nome']) && !empty($_POST['idade']) && !empty($_POST['sexo']) && !empty($_POST['salario']) && !empty($_POST['emprego']) && !empty($_POST['profissao'])
@@ -8,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $msg = "O campo nome é obrigatório";
     } else {
         $dadosUsuario = cadastroUsuarios();
+        startSessao("dadosUser", $dadosUsuario);
     }
 }
 ?>

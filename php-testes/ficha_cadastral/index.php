@@ -4,8 +4,7 @@ require_once "functions/dados.php";
 
 session_start();
 
-$dadosUsuario = cadastroUsuarios();
-veficaMetodoServerEnviado($dadosUsuario);
+
 
 
 ?>

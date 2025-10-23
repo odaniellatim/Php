@@ -3,9 +3,15 @@ require_once "../functions/constants.php";
 require_once "../functions/dados.php";
 
 session_start();
-$dadosUsuario = cadastroUsuarios();
-$dadosSessao = veficaMetodoServerEnviado($dadosUsuario);
+$dadosSessao = veficaMetodoServerEnviado();
 
+//Processo para criar um arquivo json
+// $json = json_encode($dadosSessao);
+// print_r($json);
+
+// bd($json);
+
+// var_dump($dadosSessao);
 ?>
 
 <!DOCTYPE html>
